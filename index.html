@@ -1,41 +1,69 @@
-<!DOCTYPE html>
-<head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1">
-    <!--link rel="stylesheet" href="style.css"-->
-    <title>AR.js Image Tracking Sample</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-    <!--script src='./sample.js'></script-->
-</head>
-<body>
-    <div class="arjs-loader">
-        <div>Loading...</div>
-    </div>
-    <a-scene
-        vr-mode-ui="enabled: false;"
-        renderer='antialias: true; alpha: true; precision: mediump;'
-        embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'
-    >
-        <a-assets>
-            <!-- <a-asset-item id="model" src="../resources/sample-entity.glb"></a-asset-item> -->
-            <a-asset-item id="model" src="https://dl.dropbox.com/s/f2ad4zk592f8dwt/thors_hammer.glb"></a-asset-item>
-        </a-assets>
+<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
 
-        <!-- <a-nft
-            samplehandler 
-            type='nft' url="../resources/ramen-1000px"
-            smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5"
-        > -->
-        <a-nft
-            samplehandler 
-            type='nft' url="https://michaelandrainy.com/AR/trex-image-big"
-            smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5"
-        >
-            <!-- <a-entity modify-materials gltf-model="#model" material="src:#tex-image" play-all-model-animations="" position="0 0 0" rotation="0 0 0" scale="100 100 100" visible="true">
-            </a-entity> -->
-            <a-entity modify-materials gltf-model="#model" play-all-model-animations="" position="0 500 0" rotation="-90 0 0" scale="50 50 50" visible="true">
-            </a-entity>
-        </a-nft>
+<style>
+  .arjs-loader {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .arjs-loader div {
+    text-align: center;
+    font-size: 1.25em;
+    color: white;
+  }
+</style>
+
+<body style="margin : 0px; overflow: hidden;">
+  <!-- minimal loader shown until image descriptors are loaded -->
+  <div class="arjs-loader">
+  </div>
+  <a-scene
+    vr-mode-ui="enabled: false;"
+    renderer="logarithmicDepthBuffer: true;"
+    embedded
+    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+  >
+    <!-- we use cors proxy to avoid cross-origin problems -->
+
+    <!--
+      ⚠️⚠️⚠️
+      https://arjs-cors-proxy.herokuapp.com/ is now offline, Heroku has dismissed all his free plans from November 2022.
+      You need to host your own proxy and use it instead. The proxy is based on CORS Anywhere (see https://github.com/Rob--W/cors-anywhere).
+      ⚠️⚠️⚠️
+    -->
+
+    <a-nft
+      type="nft"
+      url="https://michaelandrainy.com/AR/trex-image-big"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5"
+    >
+    <!--a-nft
+      type="nft"
+      url="https://dl.dropbox.com/s/82tammgs92z468q/trex-image-big.jpeg"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5"
+    -->
+      <a-entity
+        gltf-model="https://dl.dropbox.com/s/f2ad4zk592f8dwt/thors_hammer.glb"
+        scale="1 1 1"
+        position="50 150 0"
+      >
+      </a-entity>
+    </a-nft>
     <a-entity camera></a-entity>
   </a-scene>
 </body>
