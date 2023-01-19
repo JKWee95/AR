@@ -34,7 +34,7 @@ sceneEl.addEventListener('loaded', () => {
   </div>
   <a-scene
     vr-mode-ui="enabled: false;"
-    renderer="logarithmicDepthBuffer: true;antialias: true;alpha: true;"
+    renderer="logarithmicDepthBuffer: true;"
     embedded
     arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
   >
@@ -65,12 +65,11 @@ sceneEl.addEventListener('loaded', () => {
     -->
       <a-entity
         gltf-model="https://dl.dropbox.com/s/f2ad4zk592f8dwt/thors_hammer.glb"
-        scale="2 2 2"
+        scale="3 3 3"
         position="0 0 0"
       >
-      
       </a-entity>
     </a-nft>
-   <a-entity camera></a-entity>
+    <a-entity camera></a-entity>
   </a-scene>
 </body>
